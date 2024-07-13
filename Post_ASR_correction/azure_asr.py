@@ -10,14 +10,13 @@ region = os.getenv("REGION")
 
 default_language = "en-US"  # Example: 'en-US' for English, 'hi-IN' for Hindi
 
+speech_config = speechsdk.SpeechConfig(subscription=subscription_key, region=region)
+speech_config.speech_recognition_language=default_language
+
 # USING MICROPHONE
 def recognize_from_microphone():
-    speech_config = speechsdk.SpeechConfig(subscription=subscription_key, region=region)
-    speech_config.speech_recognition_language=default_language
-
     audio_config = speechsdk.audio.AudioConfig(use_default_microphone=True)
     speech_recognizer = speechsdk.SpeechRecognizer(speech_config=speech_config, audio_config=audio_config)
-
     print("Speak into your microphone.")
     speech_recognition_result = speech_recognizer.recognize_once_async().get()
 
@@ -37,9 +36,7 @@ def recognize_from_microphone():
 # recognize_from_microphone()
 
 # audio file to text
-def transcribe_audio_to_text(audio_file_path, language=default_language, subscription_key=subscription_key, region=region):
-    speech_config = speechsdk.SpeechConfig(subscription=subscription_key, region=region)
-    speech_config.speech_recognition_language = language
+def transcribe_audio_to_text(audio_file_path):
     audio_config = speechsdk.audio.AudioConfig(filename=audio_file_path)
     speech_recognizer = speechsdk.SpeechRecognizer(speech_config=speech_config, audio_config=audio_config)
     result = speech_recognizer.recognize_once()
