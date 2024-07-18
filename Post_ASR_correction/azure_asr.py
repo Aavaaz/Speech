@@ -9,7 +9,8 @@ subscription_key = os.getenv("SUBSCRIPTION_KEY")
 region = os.getenv("REGION")
 
 # default_language = "en-US"  # Example: 'en-US' for English, 'hi-IN' for Hindi
-default_language = "hi-IN"  # Example: 'en-US' for English, 'hi-IN' for Hindi
+# default_language = "hi-IN"  
+default_language = "gu-IN"
 
 speech_config = speechsdk.SpeechConfig(subscription=subscription_key, region=region)
 speech_config.speech_recognition_language=default_language
